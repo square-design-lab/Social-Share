@@ -148,32 +148,32 @@ input[type="color"]::-webkit-color-swatch{border:none;border-radius:50%;}
 .sdl-sh[data-align="center"][data-dir="column"] .sdl-sh-links{align-items:center;}
 .sdl-sh[data-align="right"] .sdl-sh-links,.sdl-sh[data-align="right"] .sdl-sh-heading{justify-content:flex-end;text-align:right;}
 .sdl-sh[data-align="right"][data-dir="column"] .sdl-sh-links{align-items:flex-end;}
-.sdl-sh-btn{--brand:#333;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid transparent;background:none;cursor:pointer;text-decoration:none;font-family:inherit;font-weight:600;line-height:1;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,transform .08s,box-shadow .2s;}
+.sdl-sh[data-size="s"]{--sh-fs:11px;--sh-px:13px;--sh-py:7px;--sh-icon:15px;--sh-radius:6px;--sh-ls:.04em;}
+.sdl-sh[data-size="m"]{--sh-fs:12px;--sh-px:17px;--sh-py:10px;--sh-icon:17px;--sh-radius:7px;--sh-ls:.05em;}
+.sdl-sh[data-size="l"]{--sh-fs:14px;--sh-px:22px;--sh-py:13px;--sh-icon:20px;--sh-radius:8px;--sh-ls:.04em;}
+.sdl-sh-btn{--brand:#333;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid transparent;background:none;cursor:pointer;text-decoration:none;font-family:inherit;font-weight:var(--sh-weight,600);font-size:var(--sh-fs,12px);line-height:1;white-space:nowrap;text-transform:none;letter-spacing:normal;padding:var(--sh-py,10px) var(--sh-px,17px);transition:background .2s,color .2s,border-color .2s,transform .08s,box-shadow .2s;}
 .sdl-sh-btn:active{transform:scale(.96);}
 .sdl-sh-icon{display:inline-flex;}
-.sdl-sh-icon svg{display:block;width:1.15em;height:1.15em;}
-.sdl-sh[data-size="s"] .sdl-sh-btn{font-size:11px;padding:7px 13px;letter-spacing:.04em;}
-.sdl-sh[data-size="m"] .sdl-sh-btn{font-size:12px;padding:10px 17px;letter-spacing:.05em;}
-.sdl-sh[data-size="l"] .sdl-sh-btn{font-size:14px;padding:13px 22px;letter-spacing:.04em;}
-.sdl-sh[data-content="icon-label"] .sdl-sh-btn{text-transform:uppercase;}
+.sdl-sh-icon svg{display:block;width:var(--sh-icon,17px);height:var(--sh-icon,17px);}
+.sdl-sh[data-upper="1"] .sdl-sh-btn{text-transform:uppercase;letter-spacing:var(--sh-ls,.05em);}
 .sdl-sh[data-shape="pill"] .sdl-sh-btn{border-radius:999px;}
-.sdl-sh[data-shape="square"] .sdl-sh-btn{border-radius:7px;}
+.sdl-sh[data-shape="square"] .sdl-sh-btn{border-radius:var(--sh-radius,7px);}
 .sdl-sh[data-shape="circle"] .sdl-sh-btn{border-radius:50%;}
-.sdl-sh[data-content="icon"] .sdl-sh-btn{gap:0;}
-.sdl-sh[data-content="icon"][data-size="s"] .sdl-sh-btn{width:34px;height:34px;padding:0;}
-.sdl-sh[data-content="icon"][data-size="m"] .sdl-sh-btn{width:42px;height:42px;padding:0;}
-.sdl-sh[data-content="icon"][data-size="l"] .sdl-sh-btn{width:52px;height:52px;padding:0;}
-.sdl-sh[data-content="icon"] .sdl-sh-icon svg{width:1.25em;height:1.25em;}
+.sdl-sh[data-content="icon"] .sdl-sh-btn{gap:0;padding:var(--sh-py,10px);aspect-ratio:1;}
 .sdl-sh[data-fill="solid"] .sdl-sh-btn{background:var(--brand);border-color:var(--brand);color:#fff;}
 .sdl-sh[data-fill="solid"] .sdl-sh-btn:hover{filter:brightness(.88);}
 .sdl-sh[data-fill="outline"] .sdl-sh-btn{background:transparent;border-color:var(--brand);color:var(--brand);}
 .sdl-sh[data-fill="outline"] .sdl-sh-btn:hover{background:var(--brand);color:#fff;}
 .sdl-sh[data-fill="soft"] .sdl-sh-btn{background:color-mix(in srgb,var(--brand) 13%,transparent);border-color:transparent;color:var(--brand);}
 .sdl-sh[data-fill="soft"] .sdl-sh-btn:hover{background:var(--brand);color:#fff;}
-.sdl-sh--floating{position:absolute;top:var(--sh-float-top,120px);z-index:80;margin:0;background:#fff;padding:10px;border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,0.12);}
+.sdl-sh--floating{--sh-float-x:20px;--sh-float-radius:14px;position:absolute;top:var(--sh-float-top,120px);z-index:80;margin:0;background:#fff;padding:10px;border-radius:var(--sh-float-radius);box-shadow:0 6px 24px rgba(0,0,0,0.12);}
+.sdl-sh--floating.sdl-sh--noshadow{box-shadow:none;}
 .sdl-sh--floating .sdl-sh-links{flex-direction:column;gap:8px;}
-.sdl-sh--floating[data-float-pos="left"]{left:20px;}
-.sdl-sh--floating[data-float-pos="right"]{right:20px;}
+.sdl-sh--floating[data-float-pos="left"]{left:var(--sh-float-x);}
+.sdl-sh--floating[data-float-pos="right"]{right:var(--sh-float-x);}
+.sdl-sh--floating.pv-mobilebar{top:auto!important;bottom:0;left:0!important;right:0!important;width:100%;border-radius:var(--sh-float-radius) var(--sh-float-radius) 0 0;box-shadow:0 -4px 20px rgba(0,0,0,0.12);}
+.sdl-sh--floating.pv-mobilebar.sdl-sh--noshadow{box-shadow:none;}
+.sdl-sh--floating.pv-mobilebar .sdl-sh-links{flex-direction:row;justify-content:center;flex-wrap:nowrap;overflow-x:auto;}
 </style>
 </head>
 <body class="tab-edit">
@@ -211,7 +211,13 @@ input[type="color"]::-webkit-color-swatch{border:none;border-radius:50%;}
               <button data-v="left" class="active">Left</button><button data-v="right">Right</button>
             </div>
           </div>
-          <div class="control-row"><label>Top offset (px)</label><input type="number" id="floatingOffset" value="180"></div>
+          <div class="two-col">
+            <div class="control-row"><label>Top offset (px)</label><input type="number" id="floatingOffset" value="180"></div>
+            <div class="control-row"><label>Side offset (px)</label><input type="number" id="floatingOffsetX" value="20"></div>
+          </div>
+          <div class="helper-text" style="margin:-8px 0 12px;">Side offset is measured from whichever edge the rail is aligned to (left → from left, right → from right).</div>
+          <div class="control-row"><label>Rail corner radius (px)</label><input type="number" id="floatingRadius" value="14"></div>
+          <div class="toggle-row"><label>Drop shadow on rail / bar</label><input type="checkbox" class="sw" id="floatingShadow" checked></div>
           <div class="toggle-row"><label>Collapse to bottom bar on mobile</label><input type="checkbox" class="sw" id="floatingMobileBar" checked></div>
         </div>
       </div>
@@ -264,6 +270,32 @@ input[type="color"]::-webkit-color-swatch{border:none;border-radius:50%;}
           <div class="control-row"><label>Alignment</label><select id="align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></div>
         </div>
         <div class="control-row"><label>Gap between buttons (px)</label><input type="number" id="gap" value="10"></div>
+        <div class="two-col">
+          <div class="control-row"><label>Label weight</label>
+            <select id="fontWeight"><option value="400">Regular</option><option value="500">Medium</option><option value="600" selected>Semibold</option><option value="700">Bold</option></select>
+          </div>
+          <div class="control-row" style="display:flex;flex-direction:column;justify-content:flex-end;">
+            <label>UPPERCASE labels</label>
+            <div class="toggle-row" style="margin:0;"><label style="font-size:12px;">Off = match body text</label><input type="checkbox" class="sw" id="uppercase"></div>
+          </div>
+        </div>
+        <div class="helper-text" style="margin-top:-6px;">Labels always use the site's body font. These only adjust weight and casing.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-header" onclick="tog(this)">Exact Sizing (optional)</div>
+      <div class="group-body">
+        <div class="helper-text" style="margin-bottom:12px;">Leave blank / 0 to use the <b>Size</b> preset above. Fill in a field to override it exactly.</div>
+        <div class="two-col">
+          <div class="control-row"><label>Icon size (px)</label><input type="number" id="iconSize" placeholder="auto" min="0"></div>
+          <div class="control-row"><label>Text size (px)</label><input type="number" id="textSize" placeholder="auto" min="0"></div>
+        </div>
+        <div class="two-col">
+          <div class="control-row"><label>Padding — horizontal (px)</label><input type="number" id="padX" placeholder="auto" min="0"></div>
+          <div class="control-row"><label>Padding — vertical (px)</label><input type="number" id="padY" placeholder="auto" min="0"></div>
+        </div>
+        <div class="control-row"><label>Corner radius (px) <span style="color:var(--text-tertiary);font-weight:400;">— Square shape only</span></label><input type="number" id="radius" placeholder="auto" min="0"></div>
       </div>
     </div>
 
@@ -352,10 +384,11 @@ var NETWORKS={
 var NET_ORDER=["copy","facebook","twitter","linkedin","email","whatsapp","telegram","pinterest","reddit","native"];
 
 var state={
-  placement:"pagination",floatingPosition:"left",floatingOffset:180,floatingMobileBar:true,
+  placement:"pagination",floatingPosition:"left",floatingOffset:180,floatingOffsetX:20,floatingRadius:14,floatingShadow:true,floatingMobileBar:true,
   networks:["copy","facebook","twitter","linkedin","email","whatsapp"],
   content:"icon-label",shape:"pill",fill:"solid",colorMode:"brand",monoColor:"#111111",customColor:"#111111",
   size:"m",direction:"row",align:"left",gap:10,
+  uppercase:false,fontWeight:600,iconSize:0,textSize:0,padX:0,padY:0,radius:0,
   showLabel:true,labelText:"Share article",labelStyle:"mark",labelColor:"#FE3D06",
   newTab:true,copyText:"Copy Link",copiedText:"Copied!",shareText:"Share",marginTop:24,marginBottom:8,
   collections:""
@@ -370,6 +403,7 @@ function setDev(d){
   document.getElementById("dDesk").classList.toggle("active",d==="desktop");
   document.getElementById("dMob").classList.toggle("active",d==="mobile");
   document.getElementById("previewFrame").classList.toggle("mobile",d==="mobile");
+  renderPreview();
 }
 function setCodeTab(t){codeTab=t;document.getElementById("tabFooter").classList.toggle("active",t==="footer");document.getElementById("tabBlock").classList.toggle("active",t==="block");updateCode();}
 
@@ -416,8 +450,11 @@ function bind(id,key,num){
     onChange();
   });
 }
-bind("floatingOffset","floatingOffset",true);bind("floatingMobileBar","floatingMobileBar");
+bind("floatingOffset","floatingOffset",true);bind("floatingOffsetX","floatingOffsetX",true);
+bind("floatingRadius","floatingRadius",true);bind("floatingShadow","floatingShadow");bind("floatingMobileBar","floatingMobileBar");
 bind("direction","direction");bind("align","align");bind("gap","gap",true);
+bind("fontWeight","fontWeight",true);bind("uppercase","uppercase");
+bind("iconSize","iconSize",true);bind("textSize","textSize",true);bind("padX","padX",true);bind("padY","padY",true);bind("radius","radius",true);
 bind("monoColor","monoColor");bind("customColor","customColor");
 bind("showLabel","showLabel");bind("labelText","labelText");bind("labelColor","labelColor");
 bind("newTab","newTab");bind("copyText","copyText");bind("copiedText","copiedText");bind("shareText","shareText");
@@ -461,9 +498,16 @@ function buildBlock(variant){
   wrap.setAttribute("data-shape",state.shape);wrap.setAttribute("data-fill",state.fill);
   wrap.setAttribute("data-size",state.size);wrap.setAttribute("data-content",state.content);
   wrap.setAttribute("data-align",state.align);wrap.setAttribute("data-dir",state.direction);
+  wrap.setAttribute("data-upper",state.uppercase?"1":"0");
   wrap.style.setProperty("--sh-gap",(state.gap||0)+"px");
   wrap.style.setProperty("--sh-mt",(state.marginTop||0)+"px");
   wrap.style.setProperty("--sh-mb",(state.marginBottom||0)+"px");
+  wrap.style.setProperty("--sh-weight",state.fontWeight||600);
+  if(state.iconSize)wrap.style.setProperty("--sh-icon",state.iconSize+"px");
+  if(state.textSize)wrap.style.setProperty("--sh-fs",state.textSize+"px");
+  if(state.padX)wrap.style.setProperty("--sh-px",state.padX+"px");
+  if(state.padY)wrap.style.setProperty("--sh-py",state.padY+"px");
+  if(state.radius)wrap.style.setProperty("--sh-radius",state.radius+"px");
   if(state.showLabel&&state.labelText&&variant!=="floating"){
     var lab=document.createElement("p");lab.className="sdl-sh-heading sdl-sh-heading--"+state.labelStyle;
     if(state.labelStyle==="mark"){var mk=document.createElement("mark");mk.textContent=state.labelText;mk.style.setProperty("--sh-mark",state.labelColor);lab.appendChild(mk);}
@@ -515,11 +559,15 @@ function renderPreview(){
     body.appendChild(note);
     body.appendChild(buildBlock("inline"));
   } else if(state.placement==="floating"){
-    // show article + a pagination row for context, plus fixed rail
-    mock.appendChild(document.createElement("div"));
+    var isMob=frame.classList.contains("mobile");
     var fb=buildBlock("floating");
     fb.setAttribute("data-float-pos",state.floatingPosition);
     fb.style.setProperty("--sh-float-top","70px");
+    fb.style.setProperty("--sh-float-x",(state.floatingOffsetX||0)+"px");
+    fb.style.setProperty("--sh-float-radius",(state.floatingRadius||0)+"px");
+    fb.classList.toggle("sdl-sh--noshadow",state.floatingShadow===false);
+    // reflect the mobile bottom-bar behaviour in the mobile preview
+    if(isMob&&state.floatingMobileBar){fb.classList.add("sdl-sh--float-mobilebar","pv-mobilebar");}
     frame.appendChild(fb);
   }
 }
@@ -534,12 +582,23 @@ function buildConfig(){
   if(state.colorMode==="mono")c.monoColor=state.monoColor;
   if(state.colorMode==="custom")c.customColor=state.customColor;
   c.size=state.size;c.align=state.align;c.direction=state.direction;c.gap=state.gap;
+  if(state.uppercase)c.uppercase=true;
+  if(Number(state.fontWeight)!==600)c.fontWeight=Number(state.fontWeight);
+  if(state.iconSize)c.iconSize=state.iconSize;
+  if(state.textSize)c.textSize=state.textSize;
+  if(state.padX)c.padX=state.padX;
+  if(state.padY)c.padY=state.padY;
+  if(state.radius&&state.shape==="square")c.radius=state.radius;
   c.marginTop=state.marginTop;c.marginBottom=state.marginBottom;
   c.showLabel=state.showLabel;
   if(state.showLabel){c.labelText=state.labelText;c.labelStyle=state.labelStyle;if(state.labelStyle==="mark")c.labelColor=state.labelColor;}
   c.newTab=state.newTab;c.copyText=state.copyText;c.copiedText=state.copiedText;
   if(state.networks.indexOf("native")!==-1)c.shareText=state.shareText;
-  if(state.placement==="floating"){c.floatingPosition=state.floatingPosition;c.floatingOffset=state.floatingOffset;c.floatingMobileBar=state.floatingMobileBar;}
+  if(state.placement==="floating"){
+    c.floatingPosition=state.floatingPosition;c.floatingOffset=state.floatingOffset;
+    c.floatingOffsetX=state.floatingOffsetX;c.floatingRadius=state.floatingRadius;
+    c.floatingShadow=state.floatingShadow;c.floatingMobileBar=state.floatingMobileBar;
+  }
   var cols=(state.collections||"").split(",").map(function(s){return s.trim();}).filter(Boolean);
   if(cols.length)c.collections=cols;
   return c;

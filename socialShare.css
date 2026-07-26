@@ -45,6 +45,11 @@
 .sdl-sh[data-align="right"][data-dir="column"] .sdl-sh-links { align-items: flex-end; }
 
 /* ---- button base ---- */
+/* size presets set the baseline vars; per-button overrides (set inline) win */
+.sdl-sh[data-size="s"] { --sh-fs: 11px; --sh-px: 13px; --sh-py: 7px; --sh-icon: 15px; --sh-radius: 6px; --sh-ls: 0.04em; }
+.sdl-sh[data-size="m"] { --sh-fs: 12px; --sh-px: 17px; --sh-py: 10px; --sh-icon: 17px; --sh-radius: 7px; --sh-ls: 0.05em; }
+.sdl-sh[data-size="l"] { --sh-fs: 14px; --sh-px: 22px; --sh-py: 13px; --sh-icon: 20px; --sh-radius: 8px; --sh-ls: 0.04em; }
+
 .sdl-sh-btn {
   --brand: #333;
   display: inline-flex;
@@ -55,34 +60,31 @@
   background: none;
   cursor: pointer;
   text-decoration: none;
-  font-family: inherit;
-  font-weight: 600;
+  font-family: inherit;              /* inherit the Squarespace body font */
+  font-weight: var(--sh-weight, 600);
+  font-size: var(--sh-fs, 12px);
   line-height: 1;
   white-space: nowrap;
+  text-transform: none;
+  letter-spacing: normal;
+  padding: var(--sh-py, 10px) var(--sh-px, 17px);
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.08s ease, box-shadow 0.2s ease;
 }
 .sdl-sh-btn:active { transform: scale(0.96); }
 .sdl-sh-icon { display: inline-flex; }
-.sdl-sh-icon svg { display: block; width: 1.15em; height: 1.15em; }
+.sdl-sh-icon svg { display: block; width: var(--sh-icon, 17px); height: var(--sh-icon, 17px); }
 .sdl-sh-label { display: inline-block; }
 
-/* ---- sizes ---- */
-.sdl-sh[data-size="s"] .sdl-sh-btn { font-size: 11px; padding: 7px 13px; letter-spacing: 0.04em; }
-.sdl-sh[data-size="m"] .sdl-sh-btn { font-size: 12px; padding: 10px 17px; letter-spacing: 0.05em; }
-.sdl-sh[data-size="l"] .sdl-sh-btn { font-size: 14px; padding: 13px 22px; letter-spacing: 0.04em; }
-.sdl-sh[data-content="icon-label"] .sdl-sh-btn { text-transform: uppercase; }
+/* uppercase labels (opt-in) */
+.sdl-sh[data-upper="1"] .sdl-sh-btn { text-transform: uppercase; letter-spacing: var(--sh-ls, 0.05em); }
 
 /* ---- shapes ---- */
 .sdl-sh[data-shape="pill"]   .sdl-sh-btn { border-radius: 999px; }
-.sdl-sh[data-shape="square"] .sdl-sh-btn { border-radius: 7px; }
+.sdl-sh[data-shape="square"] .sdl-sh-btn { border-radius: var(--sh-radius, 7px); }
 .sdl-sh[data-shape="circle"] .sdl-sh-btn { border-radius: 50%; }
 
-/* icon-only: make circular/square buttons equal-sided */
-.sdl-sh[data-content="icon"] .sdl-sh-btn { gap: 0; }
-.sdl-sh[data-content="icon"][data-size="s"] .sdl-sh-btn { width: 34px; height: 34px; padding: 0; }
-.sdl-sh[data-content="icon"][data-size="m"] .sdl-sh-btn { width: 42px; height: 42px; padding: 0; }
-.sdl-sh[data-content="icon"][data-size="l"] .sdl-sh-btn { width: 52px; height: 52px; padding: 0; }
-.sdl-sh[data-content="icon"] .sdl-sh-icon svg { width: 1.25em; height: 1.25em; }
+/* icon-only: equal padding all round → square/circle sized from icon + padding */
+.sdl-sh[data-content="icon"] .sdl-sh-btn { gap: 0; padding: var(--sh-py, 10px); aspect-ratio: 1; }
 
 /* ---- fills ---- */
 /* solid */
@@ -132,27 +134,31 @@
  * ================================================================= */
 .sdl-sh--floating {
   --sh-float-top: 160px;
+  --sh-float-x: 20px;
+  --sh-float-radius: 14px;
   position: fixed;
   top: var(--sh-float-top);
   z-index: 8000;
   margin: 0;
   background: #fff;
   padding: 10px;
-  border-radius: 14px;
+  border-radius: var(--sh-float-radius);
   box-shadow: 0 6px 24px rgba(0,0,0,0.12);
 }
+.sdl-sh--floating.sdl-sh--noshadow { box-shadow: none; }
 .sdl-sh--floating .sdl-sh-links { flex-direction: column; gap: 8px; }
-.sdl-sh--floating[data-float-pos="left"]  { left: 20px; }
-.sdl-sh--floating[data-float-pos="right"] { right: 20px; }
+.sdl-sh--floating[data-float-pos="left"]  { left: var(--sh-float-x); }
+.sdl-sh--floating[data-float-pos="right"] { right: var(--sh-float-x); }
 
 @media (max-width: 767px) {
   .sdl-sh--floating.sdl-sh--float-mobilebar {
     top: auto; bottom: 0; left: 0; right: 0;
     width: 100%;
-    border-radius: 16px 16px 0 0;
+    border-radius: var(--sh-float-radius, 16px) var(--sh-float-radius, 16px) 0 0;
     padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
     box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
   }
+  .sdl-sh--floating.sdl-sh--float-mobilebar.sdl-sh--noshadow { box-shadow: none; }
   .sdl-sh--floating.sdl-sh--float-mobilebar .sdl-sh-links {
     flex-direction: row;
     justify-content: center;

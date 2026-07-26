@@ -21,12 +21,21 @@
     colorMode: "brand",        // brand | mono | custom
     monoColor: "#111111",
     customColor: "#111111",
-    size: "m",                 // s | m | l
+    size: "m",                 // s | m | l  (preset baseline for the fields below)
     align: "left",             // left | center | right
     direction: "row",          // row | column
     gap: 10,
     marginTop: 24,
     marginBottom: 8,
+    // typography — labels inherit the site body font; these fine-tune it
+    uppercase: false,          // UPPERCASE labels (off = match body text casing)
+    fontWeight: 600,           // 400 | 500 | 600 | 700
+    // exact sizing overrides — 0 = use the size preset
+    iconSize: 0,               // px
+    textSize: 0,               // px
+    padX: 0,                   // px (horizontal button padding)
+    padY: 0,                   // px (vertical button padding)
+    radius: 0,                 // px (square-shape corner radius)
     // heading / label
     showLabel: true,
     labelText: "Share article",
@@ -39,7 +48,10 @@
     shareText: "Share",        // label used for the native-share button
     // floating rail
     floatingPosition: "left",  // left | right
-    floatingOffset: 180,       // px from top (desktop rail vertical center offset base)
+    floatingOffset: 180,       // px from top
+    floatingOffsetX: 20,       // px from the aligned side (left when left, right when right)
+    floatingRadius: 14,        // px container corner radius
+    floatingShadow: true,      // drop shadow on the rail / bar
     floatingMobileBar: true,   // collapse to bottom bar on mobile
     // targeting — empty = all blog posts; otherwise restrict to these collection IDs
     collections: []
@@ -234,9 +246,17 @@
     wrap.setAttribute("data-content", c.content);
     wrap.setAttribute("data-align", c.align);
     wrap.setAttribute("data-dir", c.direction);
+    wrap.setAttribute("data-upper", c.uppercase ? "1" : "0");
     wrap.style.setProperty("--sh-gap", (c.gap || 0) + "px");
     wrap.style.setProperty("--sh-mt", (c.marginTop || 0) + "px");
     wrap.style.setProperty("--sh-mb", (c.marginBottom || 0) + "px");
+    wrap.style.setProperty("--sh-weight", c.fontWeight || 600);
+    // exact-sizing overrides — only set when provided so the size preset shows through otherwise
+    if (c.iconSize) wrap.style.setProperty("--sh-icon", c.iconSize + "px");
+    if (c.textSize) wrap.style.setProperty("--sh-fs", c.textSize + "px");
+    if (c.padX)     wrap.style.setProperty("--sh-px", c.padX + "px");
+    if (c.padY)     wrap.style.setProperty("--sh-py", c.padY + "px");
+    if (c.radius)   wrap.style.setProperty("--sh-radius", c.radius + "px");
 
     if (c.showLabel && c.labelText && variant !== "floating") {
       var lab = document.createElement("p");
@@ -298,8 +318,11 @@
 
     if (c.placement === "floating") {
       block.classList.toggle("sdl-sh--float-mobilebar", !!c.floatingMobileBar);
+      block.classList.toggle("sdl-sh--noshadow", c.floatingShadow === false);
       block.setAttribute("data-float-pos", c.floatingPosition);
       block.style.setProperty("--sh-float-top", (c.floatingOffset || 160) + "px");
+      block.style.setProperty("--sh-float-x", (c.floatingOffsetX || 0) + "px");
+      block.style.setProperty("--sh-float-radius", (c.floatingRadius || 0) + "px");
       document.body.appendChild(block);
       return true;
     }
