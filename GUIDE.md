@@ -70,12 +70,23 @@ window.SDL_SHARE_CONFIG = {
   colorMode: "brand",            // brand | mono | custom
   monoColor: "#111111",          // used when colorMode = mono
   customColor: "#111111",        // used when colorMode = custom
-  size: "m",                     // s | m | l
+  size: "m",                     // s | m | l  (baseline for the overrides below)
   align: "left",                 // left | center | right
   direction: "row",              // row | column
   gap: 10,
   marginTop: 24,
   marginBottom: 8,
+
+  // typography — labels always inherit the Squarespace body font
+  uppercase: false,              // UPPERCASE labels (off = match body text casing)
+  fontWeight: 600,               // 400 | 500 | 600 | 700
+
+  // exact-size overrides — 0 = use the size preset
+  iconSize: 0,                   // px
+  textSize: 0,                   // px
+  padX: 0,                       // px horizontal button padding
+  padY: 0,                       // px vertical button padding
+  radius: 0,                     // px square-shape corner radius
 
   // heading label
   showLabel: true,
@@ -92,6 +103,9 @@ window.SDL_SHARE_CONFIG = {
   // floating rail (placement = floating)
   floatingPosition: "left",      // left | right
   floatingOffset: 180,           // px from top
+  floatingOffsetX: 20,           // px from the aligned side (left→from left, right→from right)
+  floatingRadius: 14,            // px container corner radius
+  floatingShadow: true,          // drop shadow on the rail / bar
   floatingMobileBar: true,       // collapse to bottom bar on mobile
 
   // targeting — empty = all blog posts
